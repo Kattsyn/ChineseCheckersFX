@@ -1,7 +1,6 @@
-package com.example.chinesecheckersfx;
+package com.chinesecheckersfx;
 
 
-import java.util.Objects;
 
 public class MoveResult {
 

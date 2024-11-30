@@ -3,6 +3,6 @@ module com.example.chinesecheckersfx {
     requires javafx.fxml;
 
 
-    opens com.example.chinesecheckersfx to javafx.fxml;
-    exports com.example.chinesecheckersfx;
+    opens com.chinesecheckersfx to javafx.fxml;
+    exports com.chinesecheckersfx;
 }

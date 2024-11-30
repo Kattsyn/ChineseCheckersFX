@@ -1,4 +1,4 @@
-package com.example.chinesecheckersfx;
+package com.chinesecheckersfx;
 
 public enum WinChecker {
     NONE {

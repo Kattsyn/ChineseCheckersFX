@@ -1,9 +1,7 @@
-package com.example.chinesecheckersfx;
+package com.chinesecheckersfx;
 
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 
 public class Cell extends Circle {

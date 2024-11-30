@@ -1,9 +1,7 @@
-package com.example.chinesecheckersfx;
+package com.chinesecheckersfx;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
-import static com.example.chinesecheckersfx.CheckersApp.TILE_SIZE;
 
 public class Checker extends Circle {
 
@@ -32,9 +30,7 @@ public class Checker extends Circle {
             mouseY = e.getSceneY();
         });
 
-        setOnMouseDragged(e -> {
-            relocate(e.getSceneX() - mouseX + oldX, e.getSceneY() - mouseY + oldY);
-        });
+        setOnMouseDragged(e -> relocate(e.getSceneX() - mouseX + oldX, e.getSceneY() - mouseY + oldY));
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.chinesecheckersfx;
+package com.chinesecheckersfx;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -42,6 +42,9 @@ public class CheckersApp extends Application {
         String[] boardArr = boardString.split("\n");
         root.getChildren().addAll(cellGroup, checkerGroup);
 
+        Flask flask = new Flask(100, 100, 30, 100);
+        root.getChildren().add(flask);
+
         label.setFont(new Font("Arial Black", 24));
         label.setText("Ходит");
         label.setPrefWidth(80);
@@ -50,14 +53,11 @@ public class CheckersApp extends Application {
         labelColored.setStyle("-fx-text-fill: " + CheckerType.RED.color);
         labelColored.setText("красный");
         root.getChildren().addAll(label, labelColored);
-        //System.out.println(Font.getFamilies());
 
         for (int y = 0; y < boardArr.length; y++) {
             char[] lineArray = boardArr[y].toCharArray();
             for (int x = 0; x < boardArr[y].length(); x++) {
-                if (lineArray[x] == '0') {
-                    //
-                } else {
+                if (lineArray[x] != '0') {
                     Checker checker = null;
                     if (lineArray[x] != '1') {
                         CheckerType[] checkerTypes = CheckerType.values();
@@ -73,15 +73,12 @@ public class CheckersApp extends Application {
                     cellGroup.getChildren().add(cell);
                 }
             }
-
         }
-
         return root;
     }
 
     private Checker makeChecker(CheckerType checkerType, int x, int y) {
         Checker checker = new Checker(checkerType, x, y);
-
 
         checker.setOnMouseReleased(e -> {
             int newX = toBoard(checker.getLayoutX());
@@ -124,16 +121,8 @@ public class CheckersApp extends Application {
                         nextTurn();
                         canDoNormalMove = true;
                     }
-                    System.out.println("kill");
+                    System.out.println("Kill");
                     break;
-            }
-            switch (checker.getType()) {
-                case ORANGE -> WinChecker.ORANGE.checkWin(board);
-                case PURPLE -> WinChecker.PURPLE.checkWin(board);
-                case GREEN -> WinChecker.GREEN.checkWin(board);
-                case BLUE -> WinChecker.BLUE.checkWin(board);
-                case RED -> WinChecker.RED.checkWin(board);
-                case YELLOW -> WinChecker.YELLOW.checkWin(board);
             }
             if (WinChecker.values()[checker.getType().ordinal()].checkWin(board)) {
                 callWinWindow(checkerType);
@@ -169,7 +158,7 @@ public class CheckersApp extends Application {
                         newX + stepX > 0 && newY + stepY > 0)
                         && tryMove(checker, newX + stepX, newY + stepY).equals(new MoveResult(MoveType.KILL))
                         && !(newX + stepX == oldX && newY + stepY == oldY)) {
-                    System.out.println("Имеет!");
+                    System.out.println("Can kill another checker!");
                     return true;
                 }
             }
